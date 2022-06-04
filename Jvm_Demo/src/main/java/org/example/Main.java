@@ -1,19 +1,14 @@
 package org.example;
 
 
-import sun.misc.Launcher;
+import org.example.classLoaderDemo.MyClassLoader;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URL;
 
 public class Main {
     public static void main(String[] args) {
 
-
-        Map map = new HashMap<String,String>();
-        Launcher launcher = Launcher.getLauncher();
-
-
+        System.out.println("Test");
 
     }
 }
