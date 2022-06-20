@@ -29,11 +29,10 @@ public class TwoSun {
         // 结果集
         Map<Integer,Integer> map = new HashMap<>(nums.length - 1);
         for (int i = 0; i < nums.length; i++) {
-            int tmp = target - nums[i];
-            if (map.containsKey(tmp)){
-                return new int[]{i,map.get(tmp)};
+            if (map.containsKey(target - nums[i])){
+                return new int[]{i,map.get(target - nums[i])};
             }
-            if (map.get(nums[i]) == null){
+            if (!map.containsKey(nums[i])){
                 map.put(nums[i],i);
             }
         }
