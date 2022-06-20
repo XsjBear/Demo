@@ -22,9 +22,26 @@ public class TwoDataAdd {
      * @return
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        int nextAdd = 0;
+        ListNode result = new ListNode();
+        while (l1 != null || l2 !=null){
+            // 保证遍历完
+            // l1 + l2 + 进位
+            int tmp = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + nextAdd;
+            // 进位重置
+            nextAdd = 0;
+            // 判断是否需要进位
+            if (tmp > 10){
+                tmp -= 10;
+                nextAdd++;
+            }
+            result.val = tmp;
 
 
-        throw new RuntimeException("两数相加异常");
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+        return result;
     }
 
     class ListNode {
