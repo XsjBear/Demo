@@ -7,6 +7,11 @@ package org.Easy.twoSum;
  **/
 public class TwoDataAdd {
 
+    /**
+     * 进位符
+     */
+    int nextAdd = 0;
+
 
     /**
      * 题目说明:给你两个非空 的链表，表示两个非负的整数。它们每位数字都是按照逆序的方式存储的，并且每个节点只能存储一位数字。
@@ -22,24 +27,17 @@ public class TwoDataAdd {
      * @return
      */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int nextAdd = 0;
-        ListNode result = new ListNode();
-        while (l1 != null || l2 !=null){
-            // 保证遍历完
-            // l1 + l2 + 进位
-            int tmp = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + nextAdd;
-            // 进位重置
+        ListNode result = null;
+        if (l1 != null || l2 != null || nextAdd != 0){
+            result = new ListNode();
+            int tmp = (l1 == null ? 0 :l1.val) + (l2 == null ? 0 : l2.val) + nextAdd;
             nextAdd = 0;
-            // 判断是否需要进位
-            if (tmp > 10){
-                tmp -= 10;
+            if(tmp >= 10){
+                tmp = tmp % 10;
                 nextAdd++;
             }
             result.val = tmp;
-
-
-            l1 = l1.next;
-            l2 = l2.next;
+            result.next = addTwoNumbers(l1 == null ? null :l1.next,l2 == null ? null :l2.next);
         }
         return result;
     }
